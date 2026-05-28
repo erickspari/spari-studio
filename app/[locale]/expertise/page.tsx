@@ -5,7 +5,6 @@ import Hero from "@/components/Hero";
 import SectionTitle from "@/components/SectionTitle";
 import CTASection from "@/components/CTASection";
 
-export const runtime = "edge";
 
 export const metadata: Metadata = {
   title: "Expertise terrain — industrie, mines, SST",

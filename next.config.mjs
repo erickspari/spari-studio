@@ -1,12 +1,10 @@
-import createNextIntlPlugin from "next-intl/plugin";
+import createNextIntlPlugin from 'next-intl/plugin';
 
-const withNextIntl = createNextIntlPlugin("./i18n/request.ts");
+const withNextIntl = createNextIntlPlugin('./i18n/request.ts');
 
 const nextConfig = {
   reactStrictMode: true,
-  images: {
-    formats: ["image/avif", "image/webp"]
-  }
+  images: { formats: ['image/avif', 'image/webp'] }
 };
 
 export default withNextIntl(nextConfig);

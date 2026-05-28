@@ -5,7 +5,6 @@ import { routing } from "@/i18n/routing";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
-export const runtime = "edge";
 
 type Props = {
   children: React.ReactNode;

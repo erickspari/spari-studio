@@ -5,7 +5,6 @@ import SectionTitle from "@/components/SectionTitle";
 import ServiceCard from "@/components/ServiceCard";
 import CTASection from "@/components/CTASection";
 
-export const runtime = "edge";
 
 export const metadata: Metadata = {
   title: "Services",
