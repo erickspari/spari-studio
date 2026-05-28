@@ -7,6 +7,8 @@ import ProcessStep from "@/components/ProcessStep";
 import CTASection from "@/components/CTASection";
 import Icon from "@/components/Icon";
 
+export const runtime = "edge";
+
 
 type Props = { params: Promise<{ locale: string }> };
 

@@ -3,6 +3,8 @@ import type { Metadata } from "next";
 import Hero from "@/components/Hero";
 import ContactForm from "@/components/ContactForm";
 
+export const runtime = "edge";
+
 export const metadata: Metadata = {
   title: "Contact",
   description:
