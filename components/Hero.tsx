@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { Link } from "@/i18n/navigation";
 import Icon from "./Icon";
 
@@ -8,6 +9,7 @@ type HeroProps = {
   primaryCta?: { href: string; label: string };
   secondaryCta?: { href: string; label: string };
   variant?: "image" | "plain";
+  heroImage?: { src: string; alt: string };
 };
 
 function HeroVisual() {
@@ -53,7 +55,8 @@ export default function Hero({
   lead,
   primaryCta,
   secondaryCta,
-  variant = "image"
+  variant = "image",
+  heroImage,
 }: HeroProps) {
   if (variant === "plain") {
     return (
@@ -96,7 +99,20 @@ export default function Hero({
             </div>
           )}
         </div>
-        <HeroVisual />
+        {heroImage ? (
+          <div className="overflow-hidden rounded-2xl shadow-2xl">
+            <Image
+              src={heroImage.src}
+              alt={heroImage.alt}
+              width={1200}
+              height={800}
+              className="h-auto w-full object-cover"
+              priority
+            />
+          </div>
+        ) : (
+          <HeroVisual />
+        )}
       </div>
     </section>
   );

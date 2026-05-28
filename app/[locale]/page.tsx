@@ -5,9 +5,6 @@ import SectionTitle from "@/components/SectionTitle";
 import ServiceCard from "@/components/ServiceCard";
 import ProcessStep from "@/components/ProcessStep";
 import CTASection from "@/components/CTASection";
-import Icon from "@/components/Icon";
-
-
 
 type Props = { params: Promise<{ locale: string }> };
 
@@ -22,6 +19,7 @@ export default async function HomePage({ params }: Props) {
         lead="De vos documents terrain à des formations digitales performantes, personnalisées, accessibles et sans papier."
         primaryCta={{ href: "/contact", label: "Demander une démo" }}
         secondaryCta={{ href: "/services", label: "Voir nos services" }}
+        heroImage={{ src: "/assets/promo_01.png", alt: "Concepteur Spari Studio travaillant sur une formation sécurité au travail" }}
       />
 
       <section className="compat-strip py-5">
@@ -72,7 +70,7 @@ export default async function HomePage({ params }: Props) {
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             <ServiceCard icon="globe" variant="dark" title="Localisation & traduction fiable" description="Adaptation FR/EN avec terminologie industrielle, SST et minière, sans traduction littérale déconnectée du terrain." />
             <ServiceCard icon="monitor" variant="dark" title="Conception e-learning" description="Transformation de PDF, Word, PowerPoint et procédures en modules interactifs, clairs et engageants." />
-            <ServiceCard icon="shield" variant="dark" title="Formations d’accueil & SST" description="Parcours d’intégration, sécurité, procédures critiques et capsules adaptées aux nouveaux travailleurs." />
+            <ServiceCard icon="shield" variant="dark" title="Formations d'accueil & SST" description="Parcours d'intégration, sécurité, procédures critiques et capsules adaptées aux nouveaux travailleurs." />
             <ServiceCard icon="cube" variant="dark" title="Animations 2D & 3D" description="Vyond et Blender pour expliquer les équipements, les inspections, les risques et les gestes de sécurité." />
             <ServiceCard icon="document" variant="dark" title="Adaptation de contenus existants" description="Reconstruction de formations génériques pour refléter vos propres réalités opérationnelles." />
             <ServiceCard icon="lms" variant="dark" title="Déploiement flexible" description="Livraison SCORM/xAPI compatible avec vos plateformes LMS existantes ou via partenaires technologiques." />
@@ -92,12 +90,13 @@ export default async function HomePage({ params }: Props) {
         </div>
       </section>
 
+      {/* Section Animations 2D & 3D avec vraies images */}
       <section className="section section-navy">
         <div className="container-x grid items-center gap-10 lg:grid-cols-[.92fr_1.08fr]">
           <div>
             <div className="kicker">Animations 2D & 3D</div>
             <h2 className="mt-2 font-display text-[clamp(30px,4vw,48px)] font-extrabold leading-tight">Donnez vie à vos équipements et procédures</h2>
-            <p className="mt-4 max-w-xl text-lg text-muted">Un chariot élévateur, une inspection, une zone dangereuse ou une procédure d’usine peuvent devenir des scènes animées, guidées et interactives.</p>
+            <p className="mt-4 max-w-xl text-lg text-muted">Un chariot élévateur, une inspection, une zone dangereuse ou une procédure d'usine peuvent devenir des scènes animées, guidées et interactives.</p>
             <div className="mt-7 grid gap-3 sm:grid-cols-2">
               {[
                 ['Chariots élévateurs', 'Inspection classe 5 / 7'],
@@ -107,29 +106,51 @@ export default async function HomePage({ params }: Props) {
               ].map(([a,b]) => <div key={a} className="rounded-2xl border border-white/12 bg-white/5 p-4"><strong>{a}</strong><p className="text-sm text-muted">{b}</p></div>)}
             </div>
           </div>
-          <div className="grid gap-4 sm:grid-cols-2">
-            {[
-              ['helmet','Chariot élévateur'],['cube','Simulation 3D'],['play','Capsule Vyond'],['chart','Procédé industriel']
-            ].map(([icon,title]) => <div key={title} className="glass-panel rounded-3xl p-6"><Icon name={icon as any} className="h-12 w-12 text-gold" /><h3 className="mt-5 font-display text-xl font-extrabold">{title}</h3><div className="mt-5 h-28 rounded-2xl bg-gradient-to-br from-blue/30 via-navy to-gold/20" /></div>)}
+          <div className="grid gap-4">
+            <div className="overflow-hidden rounded-2xl shadow-lg">
+              <Image
+                src="/assets/promo_07.png"
+                alt="Module vidéo interactif d'équipement minier sur laptop"
+                width={1200}
+                height={750}
+                className="h-auto w-full object-cover"
+              />
+            </div>
+            <div className="overflow-hidden rounded-2xl shadow-lg">
+              <Image
+                src="/assets/promo_04.png"
+                alt="Formation numérique sur camion minier — visualisation terrain"
+                width={1200}
+                height={750}
+                className="h-auto w-full object-cover"
+              />
+            </div>
           </div>
         </div>
       </section>
 
+      {/* Section identité terrain avec vraie image */}
       <section className="section section-light">
         <div className="container-x grid items-center gap-10 lg:grid-cols-2">
-          <div className="visual-frame border-navy/10">
-            <Image src="/assets/booth-mockup.png" alt="Mockup kiosque Spari Studio" width={1400} height={900} className="h-auto w-full object-cover" />
+          <div className="overflow-hidden rounded-2xl border border-navy/10 shadow-cardLight">
+            <Image
+              src="/assets/promo_05.png"
+              alt="Laptop affichant une formation d'accueil numérique Spari Studio"
+              width={1400}
+              height={900}
+              className="h-auto w-full object-cover"
+            />
           </div>
           <div>
             <div className="kicker">Identité terrain</div>
             <h2 className="mt-2 font-display text-[clamp(30px,4vw,48px)] font-extrabold leading-tight">Des formations qui vous appartiennent vraiment</h2>
-            <p className="mt-4 text-lg opacity-90">Vos équipes ne se sentent pas perdues : elles reconnaissent leurs lieux, leurs machines, leurs risques et leurs procédures. C’est ce qui rend la formation plus crédible, plus utile et plus facile à retenir.</p>
+            <p className="mt-4 text-lg opacity-90">Vos équipes ne se sentent pas perdues : elles reconnaissent leurs lieux, leurs machines, leurs risques et leurs procédures. C'est ce qui rend la formation plus crédible, plus utile et plus facile à retenir.</p>
             <div className="mt-6 flex flex-wrap gap-3"><span className="badge-light">Zéro papier</span><span className="badge-light">Accès mobile</span><span className="badge-light">Mises à jour rapides</span><span className="badge-light">Qualité professionnelle</span></div>
           </div>
         </div>
       </section>
 
-      <CTASection kicker="Prêt à commencer ?" title="Apportez-nous vos documents — nous vous montrons ce qu’ils peuvent devenir." lead="Une procédure, un PowerPoint ou une formation existante suffit pour imaginer une première démo." primaryCta={{ href: "/contact", label: "Demander une démo" }} secondaryCta={{ href: "/demos", label: "Voir les démos" }} />
+      <CTASection kicker="Prêt à commencer ?" title="Apportez-nous vos documents — nous vous montrons ce qu'ils peuvent devenir." lead="Une procédure, un PowerPoint ou une formation existante suffit pour imaginer une première démo." primaryCta={{ href: "/contact", label: "Demander une démo" }} secondaryCta={{ href: "/demos", label: "Voir les démos" }} />
     </>
   );
 }
