@@ -15,7 +15,7 @@ export default async function HomePage({ params }: Props) {
     <>
       <Hero
         kicker="E-learning • Localisation • Animations 2D & 3D"
-        title="Vos formations sont encore en PDF ? Transformez-les en expériences interactives adaptées à votre réalité terrain."
+        title="Vos formations en PDF ? Transformez-les en expériences interactives terrain."
         lead="Nous convertissons vos procédures, guides, PowerPoint et formations existantes en modules e-learning modernes, bilingues et prêts à déployer."
         primaryCta={{ href: CALENDLY_URL, label: "Planifier un RDV gratuit", external: true }}
         secondaryCta={{ href: "/demos", label: "Voir une démonstration" }}

@@ -52,7 +52,7 @@ export default function ContactForm() {
     } catch {
       setStatus("error");
       setErrorMsg(
-        "Impossible d’envoyer le message. Vérifiez votre connexion ou écrivez-nous directement."
+        "Impossible d'envoyer le message. Vérifiez votre connexion ou écrivez-nous directement."
       );
     }
   }
@@ -62,7 +62,7 @@ export default function ContactForm() {
       <div className="card-light">
         <h3 className="font-display text-xl font-extrabold">Message envoyé ✅</h3>
         <p className="mt-2 text-[15px]">
-          Merci ! Nous revenons vers vous très rapidement à l’adresse indiquée.
+          Merci ! Nous revenons vers vous très rapidement à l'adresse indiquée.
         </p>
         <button
           type="button"

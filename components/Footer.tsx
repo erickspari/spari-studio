@@ -28,7 +28,7 @@ export default function Footer() {
         <div>
           <h3 className="mb-3 text-base font-extrabold">Services</h3>
           <ul className="space-y-2 text-sm text-muted">
-            <li>Localisation FR/EN</li><li>Conception e-learning</li><li>Animations 2D &amp; 3D</li><li>Formations d’accueil &amp; SST</li>
+            <li>Localisation FR/EN</li><li>Conception e-learning</li><li>Animations 2D &amp; 3D</li><li>Formations d'accueil &amp; SST</li>
           </ul>
         </div>
         <div>
