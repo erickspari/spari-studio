@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, FormEvent } from "react";
+import { useTranslations } from "next-intl";
 
 type Status = "idle" | "submitting" | "success" | "error";
 
@@ -9,6 +10,7 @@ const MAILTO = "info@sparistudio.com";
 export default function ContactForm() {
   const [status, setStatus] = useState<Status>("idle");
   const [errorMsg, setErrorMsg] = useState<string>("");
+  const t = useTranslations("contact");
 
   const formspreeId = process.env.NEXT_PUBLIC_FORMSPREE_ID;
 
@@ -21,10 +23,10 @@ export default function ContactForm() {
 
     if (!formspreeId) {
       const subject = encodeURIComponent(
-        `[Spari Studio] Demande de ${fd.get("company") || "contact"}`
+        `${t("mailtoSubject")} ${fd.get("company") || "contact"}`
       );
       const body = encodeURIComponent(
-        `Nom: ${fd.get("name")}\nEntreprise: ${fd.get("company")}\nEmail: ${fd.get("email")}\nTéléphone: ${fd.get("phone") || "-"}\n\nBesoin:\n${fd.get("message")}`
+        `${t("formName")}: ${fd.get("name")}\n${t("formCompany")}: ${fd.get("company")}\n${t("formEmail")}: ${fd.get("email")}\n${t("formPhone")}: ${fd.get("phone") || "-"}\n\n${t("formMessage")}:\n${fd.get("message")}`
       );
       window.location.href = `mailto:${MAILTO}?subject=${subject}&body=${body}`;
       setStatus("success");
@@ -45,31 +47,28 @@ export default function ContactForm() {
         const data = await res.json().catch(() => ({}));
         setStatus("error");
         setErrorMsg(
-          data?.errors?.[0]?.message ||
-            "Une erreur est survenue. Veuillez réessayer ou nous écrire directement."
+          data?.errors?.[0]?.message || t("formErrorRetry")
         );
       }
     } catch {
       setStatus("error");
-      setErrorMsg(
-        "Impossible d'envoyer le message. Vérifiez votre connexion ou écrivez-nous directement."
-      );
+      setErrorMsg(t("formErrorNetwork"));
     }
   }
 
   if (status === "success") {
     return (
       <div className="card-light">
-        <h3 className="font-display text-xl font-extrabold">Message envoyé ✅</h3>
+        <h3 className="font-display text-xl font-extrabold">{t("formSuccessTitle")}</h3>
         <p className="mt-2 text-[15px]">
-          Merci ! Nous revenons vers vous très rapidement à l'adresse indiquée.
+          {t("formSuccessBody")}
         </p>
         <button
           type="button"
           onClick={() => setStatus("idle")}
           className="btn mt-5"
         >
-          Envoyer un autre message
+          {t("formSuccessReset")}
         </button>
       </div>
     );
@@ -82,58 +81,58 @@ export default function ContactForm() {
     <form onSubmit={onSubmit} className="card-light space-y-4">
       <div className="grid gap-4 md:grid-cols-2">
         <label className="block">
-          <span className="mb-1 block text-sm font-extrabold">Nom *</span>
+          <span className="mb-1 block text-sm font-extrabold">{t("formName")} *</span>
           <input
             required
             name="name"
             type="text"
             autoComplete="name"
             className={field}
-            placeholder="Votre nom"
+            placeholder={t("formNamePlaceholder")}
           />
         </label>
         <label className="block">
-          <span className="mb-1 block text-sm font-extrabold">Entreprise</span>
+          <span className="mb-1 block text-sm font-extrabold">{t("formCompany")}</span>
           <input
             name="company"
             type="text"
             autoComplete="organization"
             className={field}
-            placeholder="Nom de votre organisation"
+            placeholder={t("formCompanyPlaceholder")}
           />
         </label>
       </div>
       <div className="grid gap-4 md:grid-cols-2">
         <label className="block">
-          <span className="mb-1 block text-sm font-extrabold">Email *</span>
+          <span className="mb-1 block text-sm font-extrabold">{t("formEmail")} *</span>
           <input
             required
             name="email"
             type="email"
             autoComplete="email"
             className={field}
-            placeholder="vous@exemple.com"
+            placeholder={t("formEmailPlaceholder")}
           />
         </label>
         <label className="block">
-          <span className="mb-1 block text-sm font-extrabold">Téléphone</span>
+          <span className="mb-1 block text-sm font-extrabold">{t("formPhone")}</span>
           <input
             name="phone"
             type="tel"
             autoComplete="tel"
             className={field}
-            placeholder="+1 514 …"
+            placeholder={t("formPhonePlaceholder")}
           />
         </label>
       </div>
       <label className="block">
-        <span className="mb-1 block text-sm font-extrabold">Votre besoin *</span>
+        <span className="mb-1 block text-sm font-extrabold">{t("formMessage")} *</span>
         <textarea
           required
           name="message"
           rows={5}
           className={field}
-          placeholder="Décrivez vos documents, vos objectifs, votre plateforme LMS, vos délais…"
+          placeholder={t("formMessagePlaceholder")}
         />
       </label>
 
@@ -157,19 +156,19 @@ export default function ContactForm() {
           disabled={status === "submitting"}
           className="btn disabled:opacity-60"
         >
-          {status === "submitting" ? "Envoi…" : "Envoyer la demande"}
+          {status === "submitting" ? t("formSubmitting") : t("formSubmit")}
         </button>
         <a
           href={`mailto:${MAILTO}`}
           className="text-sm font-extrabold text-navy underline underline-offset-4 hover:text-blue"
         >
-          ou écrire directement à {MAILTO}
+          {t("formDirectLink")} {MAILTO}
         </a>
       </div>
 
       {!formspreeId && (
         <p className="pt-2 text-xs opacity-70">
-          Ce formulaire ouvrira votre client mail. Pour un envoi direct, configurez{" "}
+          {t("formConfigNote")}{" "}
           <code className="rounded bg-navy/5 px-1 py-0.5">NEXT_PUBLIC_FORMSPREE_ID</code>{" "}
           dans <code className="rounded bg-navy/5 px-1 py-0.5">.env.local</code>.
         </p>
