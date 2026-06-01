@@ -27,6 +27,15 @@ export const metadata: Metadata = {
   description:
     "Transformez vos documents en formations interactives qui vous ressemblent. Conception e-learning, localisation FR/EN, animations 2D & 3D, livraison SCORM/xAPI.",
   keywords: ["e-learning", "formation industrielle", "SST", "formation minière", "SCORM", "xAPI"],
+  icons: {
+    icon: [
+      { url: "/favicon.svg", type: "image/svg+xml" },
+      { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
+      { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
+    ],
+    apple: "/apple-touch-icon.png",
+    shortcut: "/favicon.ico",
+  },
   openGraph: {
     title: "Spari Studio — E-learning industriel",
     description: "Transformez vos documents en formations interactives qui vous ressemblent.",
