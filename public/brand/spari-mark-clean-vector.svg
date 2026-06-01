@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Spari Studio S mark">
+<defs>
+  <linearGradient id="b" x1="0" x2="1" y1="0" y2="1"><stop offset="0" stop-color="#28D4FF"/><stop offset="0.48" stop-color="#1472FF"/><stop offset="1" stop-color="#003A91"/></linearGradient>
+  <linearGradient id="g" x1="0" x2="1" y1="0" y2="1"><stop offset="0" stop-color="#FFF1A6"/><stop offset="0.45" stop-color="#F5B83D"/><stop offset="1" stop-color="#A87100"/></linearGradient>
+  <filter id="s" x="-30%" y="-30%" width="160%" height="160%"><feDropShadow dx="0" dy="18" stdDeviation="16" flood-color="#000" flood-opacity="0.45"/></filter>
+</defs>
+<rect width="512" height="512" rx="96" fill="#050A10"/>
+<g filter="url(#s)">
+  <path d="M158 70 356 70 412 126 412 176 290 176 240 226 158 226 98 170Z" fill="url(#b)"/>
+  <path d="M356 70 412 126 412 176 290 176 240 226 240 142Z" fill="url(#g)" opacity=".95"/>
+  <path d="M238 226 316 226 264 286 184 286Z" fill="url(#g)"/>
+  <path d="M98 286 222 286 274 236 354 236 414 294 354 354 158 354 98 300Z" fill="url(#g)"/>
+  <path d="M98 286 222 286 274 236 274 318 158 354 98 300Z" fill="url(#b)"/>
+  <path d="M158 354 354 354 414 294 414 346 354 418 158 418 98 358 98 300Z" fill="url(#b)"/>
+</g>
+</svg>

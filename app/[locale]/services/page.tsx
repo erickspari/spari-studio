@@ -3,45 +3,50 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Hero from "@/components/Hero";
 import SectionTitle from "@/components/SectionTitle";
-import ServiceCard from "@/components/ServiceCard";
 import CTASection from "@/components/CTASection";
+import { CALENDLY_URL } from "@/config/links";
 
 export const metadata: Metadata = {
   title: "Services",
-  description:
-    "Localisation FR/EN, conception e-learning, adaptation de formations existantes, animations 2D Vyond et 3D Blender, livraison SCORM/xAPI compatible avec vos plateformes LMS."
+  description: "Localisation FR/EN, conception e-learning, adaptation de formations existantes, animations interactives, livraison SCORM/xAPI compatible avec vos plateformes LMS."
 };
 
 const services = [
   {
+    image: "/assets/services-localization-translation.webp",
     title: "Localisation & traduction",
-    description:
-      "Traduction FR/EN fiable, terminologie SST, minière et industrielle, adaptation culturelle et pédagogique."
+    description: "Traduction FR/EN fiable, terminologie SST, minière et industrielle, adaptation culturelle et pédagogique.",
+    benefits: ["Terminologie technique validée", "Adaptation culturelle Québec/Canada", "Révision par des experts terrain"]
   },
   {
+    image: "/assets/services-elearning-design.webp",
     title: "Conception e-learning",
-    description:
-      "Storyline, Rise, scénarisation, design pédagogique, quiz, interactions et narration."
+    description: "Scénarisation, design pédagogique, quiz, interactions et narration à partir de vos contenus existants.",
+    benefits: ["Modules engageants et clairs", "Quiz et évaluations intégrés", "Compatible tous appareils"]
   },
   {
+    image: "/assets/services-custom-adaptation.webp",
     title: "Adaptation de formations existantes",
-    description:
-      "Nous reconstruisons vos contenus pour qu'ils reflètent votre réalité et deviennent votre propriété."
+    description: "Nous reconstruisons vos contenus pour qu'ils reflètent votre réalité et deviennent votre propriété.",
+    benefits: ["Vos visuels et procédures intégrés", "Propriété complète des livrables", "Mise à jour facile par vos équipes"]
   },
   {
-    title: "Animations 2D",
-    description:
-      "Animations Vyond pour expliquer une procédure, un risque ou une situation de travail."
+    image: "/assets/services-sst-onboarding.webp",
+    title: "Formations d'accueil & SST",
+    description: "Parcours d'intégration, sécurité, procédures critiques et capsules adaptées aux nouveaux travailleurs.",
+    benefits: ["Réduction du temps d'intégration", "Conformité réglementaire assurée", "Suivi de complétion automatisé"]
   },
   {
-    title: "Animations 3D",
-    description:
-      "Blender, visualisation d'équipements, chariots élévateurs, scènes de maintenance, inspections."
+    image: "/assets/services-visual-animation.webp",
+    title: "Visualisations & animations interactives",
+    description: "Expliquez vos équipements, inspections et gestes de sécurité avec des animations claires et adaptées à vos opérations.",
+    benefits: ["Compréhension visuelle immédiate", "Procédures complexes simplifiées", "Mémorisation améliorée"]
   },
   {
+    image: "/assets/services-lms-deployment.webp",
     title: "Déploiement LMS",
-    description:
-      "Modules SCORM/xAPI compatibles avec vos plateformes LMS existantes."
+    description: "Modules SCORM/xAPI compatibles avec vos plateformes LMS existantes, testés et prêts à déployer.",
+    benefits: ["SCORM 1.2 et 2004, xAPI", "Compatible avec tous les LMS majeurs", "Tests de compatibilité inclus"]
   }
 ];
 
@@ -56,8 +61,8 @@ export default async function ServicesPage({ params }: Props) {
         variant="plain"
         kicker="Services"
         title="Une offre complète pour transformer vos formations"
-        lead="De la traduction spécialisée à la conception e-learning, jusqu'aux animations 2D et 3D."
-        primaryCta={{ href: "/contact", label: "Discuter d'un projet" }}
+        lead="De la traduction spécialisée à la conception e-learning, jusqu'aux animations interactives."
+        primaryCta={{ href: CALENDLY_URL, label: "Planifier un RDV gratuit", external: true }}
       />
 
       <section className="section section-light">
@@ -67,51 +72,39 @@ export default async function ServicesPage({ params }: Props) {
             title="Ce que nous livrons"
             lead="Chaque service est cadré à votre réalité — pas de gabarit générique."
           />
-          <div className="grid gap-6 md:grid-cols-3">
+          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
             {services.map((s) => (
-              <ServiceCard key={s.title} title={s.title} description={s.description} />
+              <article key={s.title} className="card-light flex flex-col overflow-hidden p-0">
+                <div className="h-[180px] overflow-hidden rounded-t-3xl">
+                  <Image
+                    src={s.image}
+                    alt={s.title}
+                    width={600}
+                    height={360}
+                    className="h-full w-full object-cover transition-transform duration-500 hover:scale-105"
+                  />
+                </div>
+                <div className="flex flex-1 flex-col p-6">
+                  <h3 className="font-display text-xl font-extrabold leading-tight text-navy">{s.title}</h3>
+                  <p className="mt-3 text-[15px] text-navy/75">{s.description}</p>
+                  <div className="mt-4 flex-1">
+                    <p className="text-xs font-black uppercase tracking-widest text-gold mb-2">Résultat client</p>
+                    <ul className="space-y-1.5">
+                      {s.benefits.map((b) => (
+                        <li key={b} className="flex items-start gap-2 text-[14px] text-navy/70">
+                          <span className="mt-0.5 text-gold">✓</span> {b}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  <div className="mt-6">
+                    <a href={CALENDLY_URL} target="_blank" rel="noopener noreferrer" className="btn w-full justify-center text-center">
+                      Consultation gratuite
+                    </a>
+                  </div>
+                </div>
+              </article>
             ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Section visuelle : de la salle de cours au digital */}
-      <section className="section section-navy">
-        <div className="container-x grid items-center gap-10 lg:grid-cols-2">
-          <div>
-            <div className="kicker">Formation en salle → Digital</div>
-            <h2 className="mt-2 font-display text-[clamp(28px,3.5vw,42px)] font-extrabold leading-tight">
-              Vos formations existent déjà. Nous les modernisons.
-            </h2>
-            <p className="mt-4 text-lg text-muted">
-              Vous avez des PowerPoint, des guides d'accueil, des procédures imprimées ou des formations en classe ? Nous les transformons en modules digitaux interactifs, accessibles en tout temps, depuis n'importe quel appareil.
-            </p>
-            <ul className="mt-6 space-y-3 text-[15px] text-muted">
-              <li className="flex gap-3"><span className="mt-1 h-2 w-2 flex-none rounded-full bg-gold" />Conversion de présentations PowerPoint</li>
-              <li className="flex gap-3"><span className="mt-1 h-2 w-2 flex-none rounded-full bg-gold" />Numérisation de procédures terrain</li>
-              <li className="flex gap-3"><span className="mt-1 h-2 w-2 flex-none rounded-full bg-gold" />Modernisation de formations existantes</li>
-              <li className="flex gap-3"><span className="mt-1 h-2 w-2 flex-none rounded-full bg-gold" />Intégration de quiz et de suivi de complétion</li>
-            </ul>
-          </div>
-          <div className="grid gap-4">
-            <div className="overflow-hidden rounded-2xl shadow-lg">
-              <Image
-                src="/assets/promo_08.png"
-                alt="Formateur présentant une procédure d'arrêt d'urgence en salle de cours"
-                width={1200}
-                height={750}
-                className="h-auto w-full object-cover"
-              />
-            </div>
-            <div className="overflow-hidden rounded-2xl shadow-lg">
-              <Image
-                src="/assets/collage_02.png"
-                alt="Instructeur devant un écran affichant une procédure de sécurité minière"
-                width={1200}
-                height={750}
-                className="h-auto w-full object-cover"
-              />
-            </div>
           </div>
         </div>
       </section>
@@ -119,6 +112,7 @@ export default async function ServicesPage({ params }: Props) {
       <CTASection
         title="Un projet en tête ?"
         lead="Envoyez-nous quelques documents — nous vous montrons ce qu'ils deviennent."
+        primaryCta={{ href: CALENDLY_URL, label: "Planifier un RDV gratuit", external: true }}
       />
     </>
   );

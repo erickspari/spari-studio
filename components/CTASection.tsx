@@ -1,12 +1,25 @@
 import { Link } from "@/i18n/navigation";
 
+type CtaItem = { href: string; label: string; external?: boolean };
+
 type CTASectionProps = {
   kicker?: string;
   title: string;
   lead?: string;
-  primaryCta?: { href: string; label: string };
-  secondaryCta?: { href: string; label: string };
+  primaryCta?: CtaItem;
+  secondaryCta?: CtaItem;
 };
+
+function CtaButton({ cta, className }: { cta: CtaItem; className: string }) {
+  if (cta.external) {
+    return (
+      <a href={cta.href} target="_blank" rel="noopener noreferrer" className={className}>
+        {cta.label}
+      </a>
+    );
+  }
+  return <Link href={cta.href} className={className}>{cta.label}</Link>;
+}
 
 export default function CTASection({
   kicker,
@@ -26,13 +39,9 @@ export default function CTASection({
           <p className="mx-auto mt-4 max-w-2xl text-lg text-muted">{lead}</p>
         )}
         <div className="mt-8 flex flex-wrap justify-center gap-4">
-          <Link href={primaryCta.href} className="btn">
-            {primaryCta.label}
-          </Link>
+          <CtaButton cta={primaryCta} className="btn" />
           {secondaryCta && (
-            <Link href={secondaryCta.href} className="btn-secondary">
-              {secondaryCta.label}
-            </Link>
+            <CtaButton cta={secondaryCta} className="btn-secondary" />
           )}
         </div>
       </div>

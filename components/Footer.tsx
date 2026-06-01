@@ -6,7 +6,7 @@ export default function Footer() {
     <footer className="border-t border-white/10 bg-[#03070d] py-14">
       <div className="container-x grid gap-8 md:grid-cols-[2fr_1fr_1fr_1.2fr]">
         <div>
-          <Logo compact />
+          <Logo />
           <p className="mt-4 max-w-md text-[15px] text-muted">
             Transformation de contenus de formation en expériences e-learning interactives,
             personnalisées et adaptées aux réalités terrain.

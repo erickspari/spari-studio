@@ -1,27 +1,28 @@
+"use client";
 import Image from "next/image";
 import { Link } from "@/i18n/navigation";
 
-export default function Logo({ compact = false }: { compact?: boolean }) {
+export default function Logo() {
   return (
-    <Link href="/" className="group flex items-center gap-3" aria-label="Spari Studio - Accueil">
+    <Link href="/" aria-label="Spari Studio - Accueil" className="group">
+      {/* Desktop: logo horizontal */}
+      <Image
+        src="/brand/spari-logo-horizontal-dark.png"
+        alt="Spari Studio"
+        width={200}
+        height={52}
+        className="hidden h-[52px] w-auto transition-opacity duration-300 group-hover:opacity-80 md:block"
+        priority
+      />
+      {/* Mobile: marque seule */}
       <Image
         src="/brand/spari-mark.svg"
         alt="Spari Studio"
-        width={compact ? 42 : 48}
-        height={compact ? 42 : 48}
-        className="logo-shadow transition-transform duration-300 group-hover:scale-105"
+        width={44}
+        height={44}
+        className="block h-[44px] w-[44px] transition-opacity duration-300 group-hover:opacity-80 md:hidden"
         priority
       />
-      {compact ? (
-        <span className="font-display text-xl font-extrabold tracking-wide">SPARI STUDIO</span>
-      ) : (
-        <span className="font-display leading-none">
-          <span className="block text-[24px] font-extrabold tracking-[.08em]">SPARI</span>
-          <small className="block text-gold tracking-[.36em] text-[10px] font-extrabold">
-            STUDIO
-          </small>
-        </span>
-      )}
     </Link>
   );
 }

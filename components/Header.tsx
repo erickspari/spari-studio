@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { Link, usePathname } from "@/i18n/navigation";
 import Logo from "./Logo";
+import { CALENDLY_URL } from "@/config/links";
 
 const links = [
   { href: "/services", label: "Services" },
@@ -44,7 +45,7 @@ export default function Header() {
           <Link href="/" locale="en" className="rounded px-2 py-1 text-xs font-extrabold uppercase tracking-widest text-white/50 hover:text-gold">EN</Link>
         </div>
         */}
-        <div className="hidden md:block"><Link href="/contact" className="btn">Demander une démo</Link></div>
+        <div className="hidden md:block"><a href={CALENDLY_URL} target="_blank" rel="noopener noreferrer" className="btn">Planifier un RDV</a></div>
         <button aria-label={open ? "Fermer le menu" : "Ouvrir le menu"} aria-expanded={open} onClick={() => setOpen((v) => !v)} className="grid h-11 w-11 place-items-center rounded-xl border border-white/20 bg-white/5 md:hidden">
           <span className="sr-only">Menu</span>
           <span className="relative block h-[2px] w-5 bg-white before:absolute before:left-0 before:top-[-6px] before:h-[2px] before:w-5 before:bg-white before:content-[''] after:absolute after:left-0 after:top-[6px] after:h-[2px] after:w-5 after:bg-white after:content-['']" />
@@ -56,7 +57,7 @@ export default function Header() {
             {links.map((l) => (
               <Link key={l.href} href={l.href} className={`rounded-md px-3 py-3 text-base font-extrabold uppercase tracking-wide ${pathname === l.href ? "bg-white/5 text-gold" : "text-white/85 hover:bg-white/5"}`}>{l.label}</Link>
             ))}
-            <Link href="/contact" className="btn mt-2 w-full justify-center">Demander une démo</Link>
+            <a href={CALENDLY_URL} target="_blank" rel="noopener noreferrer" className="btn mt-2 w-full justify-center">Planifier un RDV</a>
           </nav>
         </div>
       )}

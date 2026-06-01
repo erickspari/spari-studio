@@ -2,12 +2,14 @@ import Image from "next/image";
 import { Link } from "@/i18n/navigation";
 import Icon from "./Icon";
 
+type CtaItem = { href: string; label: string; external?: boolean };
+
 type HeroProps = {
   kicker?: string;
   title: string;
   lead?: string;
-  primaryCta?: { href: string; label: string };
-  secondaryCta?: { href: string; label: string };
+  primaryCta?: CtaItem;
+  secondaryCta?: CtaItem;
   variant?: "image" | "plain";
   heroImage?: { src: string; alt: string };
 };
@@ -49,6 +51,17 @@ function HeroVisual() {
   );
 }
 
+function CtaButton({ cta, className }: { cta: CtaItem; className: string }) {
+  if (cta.external) {
+    return (
+      <a href={cta.href} target="_blank" rel="noopener noreferrer" className={className}>
+        {cta.label}
+      </a>
+    );
+  }
+  return <Link href={cta.href} className={className}>{cta.label}</Link>;
+}
+
 export default function Hero({
   kicker,
   title,
@@ -69,8 +82,8 @@ export default function Hero({
           {lead && <p className="mt-5 max-w-3xl text-lg text-muted md:text-xl">{lead}</p>}
           {(primaryCta || secondaryCta) && (
             <div className="mt-8 flex flex-wrap gap-4">
-              {primaryCta && <Link href={primaryCta.href} className="btn">{primaryCta.label}</Link>}
-              {secondaryCta && <Link href={secondaryCta.href} className="btn-secondary">{secondaryCta.label}</Link>}
+              {primaryCta && <CtaButton cta={primaryCta} className="btn" />}
+              {secondaryCta && <CtaButton cta={secondaryCta} className="btn-secondary" />}
             </div>
           )}
         </div>
@@ -94,8 +107,8 @@ export default function Hero({
           </div>
           {(primaryCta || secondaryCta) && (
             <div className="mt-9 flex flex-wrap gap-4">
-              {primaryCta && <Link href={primaryCta.href} className="btn">{primaryCta.label}</Link>}
-              {secondaryCta && <Link href={secondaryCta.href} className="btn-secondary">{secondaryCta.label}</Link>}
+              {primaryCta && <CtaButton cta={primaryCta} className="btn" />}
+              {secondaryCta && <CtaButton cta={secondaryCta} className="btn-secondary" />}
             </div>
           )}
         </div>
