@@ -34,6 +34,7 @@ export default async function HomePage({ params }: Props) {
         primaryCta={{ href: CALENDLY_URL, label: t("heroCta1"), external: true }}
         secondaryCta={{ href: "/demos", label: t("heroCta2") }}
         heroImage={{ src: "/assets/home-hero-documents-to-elearning.webp", alt: t("heroImgAlt") }}
+        badges={[t("heroBadge1"), t("heroBadge2"), t("heroBadge3")]}
       />
 
       {/* Bande LMS */}

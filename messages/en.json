@@ -103,11 +103,14 @@
     "identityBody": "Your teams recognize their workplaces, their machines, their hazards and their procedures. That's what makes training more credible, more useful and easier to retain.",
     "identityCta": "Schedule a Free Call",
     "heroImgAlt": "Transforming documents into interactive e-learning experiences",
-    "identityImgAlt": "Workers recognizing their equipment in an e-learning module"
+    "identityImgAlt": "Workers recognizing their equipment in an e-learning module",
+    "heroBadge1": "Your Documents",
+    "heroBadge2": "Your Field Visuals",
+    "heroBadge3": "Your Property"
   },
   "services": {
     "metaTitle": "Services",
-    "metaDesc": "FR/EN localization, e-learning design, training adaptation, 2D Vyond and 3D Blender animation, SCORM/xAPI delivery compatible with your LMS platforms.",
+    "metaDesc": "FR/EN localization, e-learning design, training adaptation, 2D and 3D animation, SCORM/xAPI delivery compatible with your LMS platforms.",
     "heroKicker": "Services",
     "heroTitle": "A complete offering to transform your training",
     "heroLead": "From specialized translation to e-learning design, all the way to 2D and 3D animation.",
@@ -265,7 +268,11 @@
     "studioBody": "Instructional design, storyboarding, graphic design, 3D modeling, FR/EN localization — all done in-house to ensure consistency, speed, and quality on every deliverable.",
     "teamImgAlt": "Two Spari Studio team members working together on a project",
     "studioImgAlt": "Specialist working on industrial equipment for a training module",
-    "ctaCta": "Write to Us",
+    "studioBadge1": "Instructional Design",
+    "studioBadge2": "FR/EN Localization",
+    "studioBadge3": "Interactive Animations",
+    "studioBadge4": "SCORM/xAPI Modules",
+    "ctaCta": "Schedule a Call",
     "ctaTitle": "Let's work together",
     "ctaLead": "A project, a redesign, an audit? Write to us."
   },

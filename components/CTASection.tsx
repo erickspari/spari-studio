@@ -25,7 +25,7 @@ export default function CTASection({
   kicker,
   title,
   lead,
-  primaryCta = { href: "/contact", label: "Demander une démo" },
+  primaryCta,
   secondaryCta
 }: CTASectionProps) {
   return (
@@ -38,12 +38,14 @@ export default function CTASection({
         {lead && (
           <p className="mx-auto mt-4 max-w-2xl text-lg text-muted">{lead}</p>
         )}
-        <div className="mt-8 flex flex-wrap justify-center gap-4">
-          <CtaButton cta={primaryCta} className="btn" />
-          {secondaryCta && (
-            <CtaButton cta={secondaryCta} className="btn-secondary" />
-          )}
-        </div>
+        {(primaryCta || secondaryCta) && (
+          <div className="mt-8 flex flex-wrap justify-center gap-4">
+            {primaryCta && <CtaButton cta={primaryCta} className="btn" />}
+            {secondaryCta && (
+              <CtaButton cta={secondaryCta} className="btn-secondary" />
+            )}
+          </div>
+        )}
       </div>
     </section>
   );

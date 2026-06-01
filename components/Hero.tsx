@@ -12,6 +12,7 @@ type HeroProps = {
   secondaryCta?: CtaItem;
   variant?: "image" | "plain";
   heroImage?: { src: string; alt: string };
+  badges?: string[];
 };
 
 function HeroVisual() {
@@ -70,6 +71,7 @@ export default function Hero({
   secondaryCta,
   variant = "image",
   heroImage,
+  badges,
 }: HeroProps) {
   if (variant === "plain") {
     return (
@@ -100,11 +102,13 @@ export default function Hero({
             <span className="text-gradient">{title}</span>
           </h1>
           {lead && <p className="mt-6 max-w-2xl text-lg text-muted md:text-xl">{lead}</p>}
-          <div className="mt-7 flex flex-wrap gap-3">
-            <span className="badge">Vos documents</span>
-            <span className="badge">Vos visuels terrain</span>
-            <span className="badge">Votre propriété</span>
-          </div>
+          {badges && badges.length > 0 && (
+            <div className="mt-7 flex flex-wrap gap-3">
+              {badges.map((b) => (
+                <span key={b} className="badge">{b}</span>
+              ))}
+            </div>
+          )}
           {(primaryCta || secondaryCta) && (
             <div className="mt-9 flex flex-wrap gap-4">
               {primaryCta && <CtaButton cta={primaryCta} className="btn" />}

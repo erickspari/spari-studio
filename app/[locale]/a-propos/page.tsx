@@ -4,6 +4,7 @@ import Image from "next/image";
 import Hero from "@/components/Hero";
 import SectionTitle from "@/components/SectionTitle";
 import CTASection from "@/components/CTASection";
+import { CALENDLY_URL } from "@/config/links";
 
 type Props = { params: Promise<{ locale: string }> };
 
@@ -99,10 +100,10 @@ export default async function AboutPage({ params }: Props) {
               {t("studioBody")}
             </p>
             <div className="mt-6 flex flex-wrap gap-3">
-              <span className="badge-light">Design pédagogique</span>
-              <span className="badge-light">Localisation FR/EN</span>
-              <span className="badge-light">Animations interactives</span>
-              <span className="badge-light">Modules SCORM/xAPI</span>
+              <span className="badge-light">{t("studioBadge1")}</span>
+              <span className="badge-light">{t("studioBadge2")}</span>
+              <span className="badge-light">{t("studioBadge3")}</span>
+              <span className="badge-light">{t("studioBadge4")}</span>
             </div>
           </div>
         </div>
@@ -111,6 +112,7 @@ export default async function AboutPage({ params }: Props) {
       <CTASection
         title={t("ctaTitle")}
         lead={t("ctaLead")}
+        primaryCta={{ href: CALENDLY_URL, label: t("ctaCta"), external: true }}
       />
     </>
   );
