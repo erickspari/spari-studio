@@ -22,11 +22,12 @@ export default async function ServicesPage({ params }: Props) {
   setRequestLocale(locale);
   const t = await getTranslations("services");
 
+  const isEn = locale === "en";
   const services = [
     { image: "/assets/services-localization-translation.webp", title: t("svc1Title"), description: t("svc1Desc"), benefits: [t("svc1Benefit1"), t("svc1Benefit2"), t("svc1Benefit3")] },
-    { image: "/assets/services-elearning-design.webp", title: t("svc2Title"), description: t("svc2Desc"), benefits: [t("svc2Benefit1"), t("svc2Benefit2"), t("svc2Benefit3")] },
+    { image: isEn ? "/assets/services-elearning-design-en.png" : "/assets/services-elearning-design.webp", title: t("svc2Title"), description: t("svc2Desc"), benefits: [t("svc2Benefit1"), t("svc2Benefit2"), t("svc2Benefit3")] },
     { image: "/assets/services-custom-adaptation.webp", title: t("svc3Title"), description: t("svc3Desc"), benefits: [t("svc3Benefit1"), t("svc3Benefit2"), t("svc3Benefit3")] },
-    { image: "/assets/services-sst-onboarding.webp", title: t("svc4Title"), description: t("svc4Desc"), benefits: [t("svc4Benefit1"), t("svc4Benefit2"), t("svc4Benefit3")] },
+    { image: isEn ? "/assets/services-sst-onboarding-en.png" : "/assets/services-sst-onboarding.webp", title: t("svc4Title"), description: t("svc4Desc"), benefits: [t("svc4Benefit1"), t("svc4Benefit2"), t("svc4Benefit3")] },
     { image: "/assets/services-visual-animation.webp", title: t("svc5Title"), description: t("svc5Desc"), benefits: [t("svc5Benefit1"), t("svc5Benefit2"), t("svc5Benefit3")] },
     { image: "/assets/services-lms-deployment.webp", title: t("svc6Title"), description: t("svc6Desc"), benefits: [t("svc6Benefit1"), t("svc6Benefit2"), t("svc6Benefit3")] },
   ];

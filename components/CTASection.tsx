@@ -1,6 +1,7 @@
 import { Link } from "@/i18n/navigation";
+import CalendlyButton from "./CalendlyButton";
 
-type CtaItem = { href: string; label: string; external?: boolean };
+type CtaItem = { href?: string; label: string; external?: boolean; popup?: boolean };
 
 type CTASectionProps = {
   kicker?: string;
@@ -11,14 +12,21 @@ type CTASectionProps = {
 };
 
 function CtaButton({ cta, className }: { cta: CtaItem; className: string }) {
-  if (cta.external) {
+  if (cta.popup) {
+    return <CalendlyButton label={cta.label} className={className} />;
+  }
+  if (cta.external && cta.href) {
     return (
       <a href={cta.href} target="_blank" rel="noopener noreferrer" className={className}>
         {cta.label}
       </a>
     );
   }
-  return <Link href={cta.href} className={className}>{cta.label}</Link>;
+  if (cta.href) {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    return <Link href={cta.href as any} className={className}>{cta.label}</Link>;
+  }
+  return null;
 }
 
 export default function CTASection({

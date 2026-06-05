@@ -34,7 +34,8 @@ export default function Header() {
           {links.map((l) => {
             const active = pathname === l.href;
             return (
-              <Link key={l.href} href={l.href} className={`relative transition-colors ${active ? "text-gold" : "text-white/80 hover:text-gold"}`}>
+              // eslint-disable-next-line @typescript-eslint/no-explicit-any
+              <Link key={l.href} href={l.href as any} className={`relative transition-colors ${active ? "text-gold" : "text-white/80 hover:text-gold"}`}>
                 {l.label}
                 {active && <span className="absolute -bottom-2 left-0 h-[2px] w-full rounded-full bg-gold" />}
               </Link>
@@ -72,7 +73,8 @@ export default function Header() {
         <div className="border-t border-white/10 bg-ink md:hidden">
           <nav className="container-x flex flex-col gap-1 py-4">
             {links.map((l) => (
-              <Link key={l.href} href={l.href} className={`rounded-md px-3 py-3 text-base font-extrabold uppercase tracking-wide ${pathname === l.href ? "bg-white/5 text-gold" : "text-white/85 hover:bg-white/5"}`}>{l.label}</Link>
+              // eslint-disable-next-line @typescript-eslint/no-explicit-any
+              <Link key={l.href} href={l.href as any} className={`rounded-md px-3 py-3 text-base font-extrabold uppercase tracking-wide ${pathname === l.href ? "bg-white/5 text-gold" : "text-white/85 hover:bg-white/5"}`}>{l.label}</Link>
             ))}
             <div className="flex items-center gap-3 px-3 py-2">
               <Link href={pathname} locale="fr" className={`text-sm font-extrabold uppercase tracking-widest ${locale === "fr" ? "text-gold underline underline-offset-4" : "text-white/50"}`}>FR</Link>

@@ -31,9 +31,14 @@ export default async function HomePage({ params }: Props) {
         kicker={t("heroKicker")}
         title={t("heroTitle")}
         lead={t("heroLead")}
-        primaryCta={{ href: CALENDLY_URL, label: t("heroCta1"), external: true }}
+        primaryCta={{ label: t("heroCta1"), popup: true }}
         secondaryCta={{ href: "/demos", label: t("heroCta2") }}
-        heroImage={{ src: "/assets/home-hero-documents-to-elearning.webp", alt: t("heroImgAlt") }}
+        heroImage={{
+          src: locale === "en"
+            ? "/assets/home-hero-documents-to-elearning-en.png"
+            : "/assets/home-hero-documents-to-elearning.webp",
+          alt: t("heroImgAlt"),
+        }}
         badges={[t("heroBadge1"), t("heroBadge2"), t("heroBadge3")]}
       />
 
@@ -153,7 +158,7 @@ export default async function HomePage({ params }: Props) {
         kicker={t("ctaKicker")}
         title={t("ctaTitle")}
         lead={t("ctaLead")}
-        primaryCta={{ href: CALENDLY_URL, label: t("ctaCta1"), external: true }}
+        primaryCta={{ label: t("ctaCta1"), popup: true }}
         secondaryCta={{ href: "/demos", label: t("ctaCta2") }}
       />
     </>

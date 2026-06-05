@@ -25,10 +25,11 @@ export default async function DemosPage({ params }: Props) {
   const beforeItems = [t("beforeItem1"), t("beforeItem2"), t("beforeItem3"), t("beforeItem4"), t("beforeItem5")];
   const afterItems = [t("afterItem1"), t("afterItem2"), t("afterItem3"), t("afterItem4"), t("afterItem5")];
 
+  const isEn = locale === "en";
   const demoCards = [
     { src: "/assets/promo_09.png", alt: t("demo1Alt"), title: t("demo1Title"), desc: t("demo1DescV2") },
-    { src: "/assets/promo_03.png", alt: t("demo2Alt"), title: t("demo2Title"), desc: t("demo2DescV2") },
-    { src: "/assets/promo_05.png", alt: t("demo3Alt"), title: t("demo3Title"), desc: t("demo3DescV2") },
+    { src: isEn ? "/assets/promo_03-en.png" : "/assets/promo_03.png", alt: t("demo2Alt"), title: t("demo2Title"), desc: t("demo2DescV2") },
+    { src: isEn ? "/assets/promo_05-en.png" : "/assets/promo_05.png", alt: t("demo3Alt"), title: t("demo3Title"), desc: t("demo3DescV2") },
   ];
 
   return (
@@ -104,7 +105,13 @@ export default async function DemosPage({ params }: Props) {
           <SectionTitle kicker={t("visualKicker")} title={t("visualTitle")} lead={t("visualLead")} />
           <div className="grid gap-6 md:grid-cols-2">
             <div className="overflow-hidden rounded-2xl border border-navy/10 shadow-cardLight">
-              <Image src="/assets/demos-realistic-elearning-module.webp" alt={t("visualImg1Alt")} width={1200} height={800} className="h-auto w-full object-cover" />
+              <Image
+                src={isEn ? "/assets/demos-realistic-elearning-module-en.png" : "/assets/demos-realistic-elearning-module.webp"}
+                alt={t("visualImg1Alt")}
+                width={1200}
+                height={800}
+                className="h-auto w-full object-cover"
+              />
             </div>
             <div className="flex flex-col gap-4">
               <div className="overflow-hidden rounded-2xl border border-navy/10 shadow-cardLight">
