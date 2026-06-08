@@ -1,31 +1,46 @@
 import type { MetadataRoute } from "next";
 
-const base = "https://sparistudio.com";
+const BASE_URL = "https://sparistudio.com";
 
-const sharedPaths = ["", "/services", "/expertise", "/demos", "/contact"];
+// Each route maps a logical page to its per-locale path.
+// Kept in sync with the live route set: /a-propos is localized as /about in EN.
+const routes: { fr: string; en: string }[] = [
+  { fr: "", en: "" },
+  { fr: "/services", en: "/services" },
+  { fr: "/expertise", en: "/expertise" },
+  { fr: "/demos", en: "/demos" },
+  { fr: "/contact", en: "/contact" },
+  { fr: "/a-propos", en: "/about" },
+];
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
   const entries: MetadataRoute.Sitemap = [];
 
-  for (const locale of ["fr", "en"]) {
-    for (const path of sharedPaths) {
+  entries.push({
+    url: BASE_URL,
+    lastModified: now,
+    changeFrequency: "monthly",
+    priority: 1.0,
+  });
+
+  for (const route of routes) {
+    const isHome = route.fr === "";
+    for (const locale of ["fr", "en"] as const) {
       entries.push({
-        url: `${base}/${locale}${path}`,
+        url: `${BASE_URL}/${locale}${route[locale]}`,
         lastModified: now,
         changeFrequency: "monthly",
-        priority: path === "" ? 1 : 0.7,
+        priority: isHome ? 0.9 : 0.7,
+        alternates: {
+          languages: {
+            fr: `${BASE_URL}/fr${route.fr}`,
+            en: `${BASE_URL}/en${route.en}`,
+            "x-default": `${BASE_URL}/fr${route.fr}`,
+          },
+        },
       });
     }
-    // Chemin localisé : /fr/a-propos — /en/about
-    entries.push({
-      url: locale === "fr"
-        ? `${base}/fr/a-propos`
-        : `${base}/en/about`,
-      lastModified: now,
-      changeFrequency: "monthly",
-      priority: 0.7,
-    });
   }
 
   return entries;

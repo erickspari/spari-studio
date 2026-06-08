@@ -2,6 +2,7 @@
 // Header, Footer et NextIntlClientProvider sont dans app/[locale]/layout.tsx
 import type { Metadata } from "next";
 import { Exo_2, Inter } from "next/font/google";
+import { GoogleAnalytics } from "@next/third-parties/google";
 import "./globals.css";
 
 const exo = Exo_2({
@@ -36,6 +37,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="fr" className={`${exo.variable} ${inter.variable}`}>
       <body>{children}</body>
+      <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID!} />
     </html>
   );
 }
